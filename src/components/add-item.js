@@ -19,19 +19,20 @@ class AddItem extends PolymerElement {
     } else {
       this.todoItem = e.target.value;
     }
-    console.log(this.todoItem);
   }
 
   onAddItem() {
-    let todoList = [
-      {
+    if (this.todoItem.length > 0) {
+      let storedTodoList = JSON.parse(localStorage.getItem("todo-list"));
+      storedTodoList = storedTodoList === null ? [] : storedTodoList;
+      storedTodoList.push({
         id: new Date().valueOf(),
         item: this.todoItem,
         done: false,
-      },
-    ];
-    localStorage.setItem("todo-list", JSON.stringify(todoList));
-    this.todoItem = "";
+      });
+      localStorage.setItem("todo-list", JSON.stringify(storedTodoList));
+      this.todoItem = "";
+    }
   }
 
   static get template() {
