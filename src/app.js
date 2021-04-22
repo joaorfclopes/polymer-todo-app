@@ -1,5 +1,6 @@
 import { PolymerElement, html } from "@polymer/polymer";
 import "./components/add-item";
+import "./components/list-items";
 
 class TodoApp extends PolymerElement {
   static get properties() {
@@ -10,13 +11,15 @@ class TodoApp extends PolymerElement {
 
   constructor() {
     super();
-    this.todoList = [];
+    let list = JSON.parse(localStorage.getItem("todo-list"));
+    this.todoList = list === null ? [] : list;
   }
 
   static get template() {
     return html`<div>
       <h1>Todo App</h1>
       <add-item></add-item>
+      <list-items todo-list="[[todoList]]"></list-items>
     </div>`;
   }
 }

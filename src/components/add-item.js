@@ -3,8 +3,8 @@ import { PolymerElement, html } from "@polymer/polymer";
 class AddItem extends PolymerElement {
   static get properties() {
     return {
-      todoList: Array,
       todoItem: String,
+      todoList: Array,
     };
   }
 
@@ -26,9 +26,9 @@ class AddItem extends PolymerElement {
       let storedTodoList = JSON.parse(localStorage.getItem("todo-list"));
       storedTodoList = storedTodoList === null ? [] : storedTodoList;
       storedTodoList.push({
+        done: false,
         id: new Date().valueOf(),
         item: this.todoItem,
-        done: false,
       });
       localStorage.setItem("todo-list", JSON.stringify(storedTodoList));
       this.todoItem = "";
