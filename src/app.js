@@ -15,6 +15,13 @@ class TodoApp extends PolymerElement {
     this.todoList = list === null ? [] : list;
   }
 
+  ready() {
+    window.addEventListener("addItem", (e) => {
+      this.todoList = e.detail.todoList;
+    });
+    super.ready();
+  }
+
   static get template() {
     return html`<div>
       <h1>Todo App</h1>
