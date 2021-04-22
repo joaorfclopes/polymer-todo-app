@@ -1,7 +1,7 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { PolymerElement, html } from "@polymer/polymer";
 import "./components/add-item";
 
-class TodoApp extends LitElement {
+class TodoApp extends PolymerElement {
   static get properties() {
     return {
       todoList: Array,
@@ -13,8 +13,9 @@ class TodoApp extends LitElement {
     this.todoList = [];
   }
 
-  render() {
+  static get template() {
     return html`<div>
+      <h1>Todo App</h1>
       <add-item></add-item>
     </div>`;
   }

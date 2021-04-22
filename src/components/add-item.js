@@ -1,6 +1,6 @@
-import { LitElement, html } from "@polymer/lit-element";
+import { PolymerElement, html } from "@polymer/polymer";
 
-class AddItem extends LitElement {
+class AddItem extends PolymerElement {
   static get properties() {
     return {
       todoList: Array,
@@ -14,18 +14,30 @@ class AddItem extends LitElement {
   }
 
   inputKeypress(e) {
-    //if enter button
     if (e.keyCode == 13) {
-      //call add item function
+      this.onAddItem();
     } else {
       this.todoItem = e.target.value;
     }
     console.log(this.todoItem);
   }
 
-  render() {
+  onAddItem() {
+    let todoList = [
+      {
+        id: new Date().valueOf(),
+        item: this.todoItem,
+        done: false,
+      },
+    ];
+    localStorage.setItem("todo-list", JSON.stringify(todoList));
+    this.todoItem = "";
+  }
+
+  static get template() {
     return html`<div>
-      <input value=${this.todoItem} @keyup="${(e) => this.inputKeypress(e)}" />
+      <input value="[[todoItem]]" on-keyup="inputKeypress" />
+      <button on-click="onAddItem">Add Item</button>
     </div>`;
   }
 }
