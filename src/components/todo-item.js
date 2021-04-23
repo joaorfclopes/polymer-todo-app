@@ -93,11 +93,13 @@ class TodoItem extends PolymerElement {
           }
         }
       </style>
-      <li class="list-item">
+      <div class="list-item">
         <input checked="[[todoItem.done]]" type="checkbox" on-click="onDone" />
-        [[todoItem.item]]
-        <button class="delete" on-click="onRemove">x</button>
-      </li> `;
+        <div class="item">[[todoItem.item]]</div>
+        <button class="delete" on-click="onRemove">
+          <strong>X</strong>
+        </button>
+      </div> `;
   }
 }
 

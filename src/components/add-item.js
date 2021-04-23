@@ -165,9 +165,16 @@ class AddItem extends PolymerElement {
           }
         }
       </style>
-      <div>
-        <input value="[[todoItem]]" on-keyup="inputKeypress" />
-        <button on-click="onAddItem">Add Item</button>
+      <div class="container">
+        <div class="add">
+          <div class="header">
+            <h1>Add New Todo</h1>
+          </div>
+          <div class="input-container">
+            <input value="[[todoItem]]" on-keyup="inputKeypress" />
+            <button class="btn-enter" on-click="onAddItem">Add Item</button>
+          </div>
+        </div>
       </div>`;
   }
 }

@@ -50,11 +50,16 @@ class ListItems extends PolymerElement {
           }
         }
       </style>
-      <ul>
-        <template is="dom-repeat" items="[[todoList]]" as="todo">
-          <todo-item todo-item="[[todo]]"></todo-item>
-        </template>
-      </ul>`;
+      <div class="lists">
+        <div class="list">
+          <h2 class="title">Todo List</h2>
+          <div class="list-wrapper">
+            <template is="dom-repeat" items="[[todoList]]" as="todo">
+              <todo-item todo-item="[[todo]]"></todo-item>
+            </template>
+          </div>
+        </div>
+      </div>`;
   }
 }
 
