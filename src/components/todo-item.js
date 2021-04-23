@@ -12,8 +12,19 @@ class TodoItem extends PolymerElement {
     this.todoItem = {};
   }
 
+  onRemove() {
+    this.dispatchEvent(
+      new CustomEvent("removeItem", {
+        bubbles: true,
+        composed: true,
+        detail: { itemId: this.todoItem.id },
+      })
+    );
+  }
+
   static get template() {
-    return html`<li>[[todoItem.item]]</li>`;
+    return html`<li>[[todoItem.item]]</li>
+      <button on-click="onRemove">x</button>`;
   }
 }
 
