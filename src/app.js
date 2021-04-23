@@ -29,6 +29,15 @@ class TodoApp extends PolymerElement {
       this.todoList = _.clone(this.todoList);
       localStorage.setItem("todo-list", JSON.stringify(this.todoList));
     });
+    window.addEventListener("changeItem", (e) => {
+      let index = this.todoList
+        .map(function (item) {
+          return item.id;
+        })
+        .indexOf(e.detail.itemId);
+      this.todoList[index].done = !this.todoList[index].done;
+      localStorage.setItem("todo-list", JSON.stringify(this.todoList));
+    });
     super.ready();
   }
 

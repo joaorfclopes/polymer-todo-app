@@ -22,9 +22,24 @@ class TodoItem extends PolymerElement {
     );
   }
 
+  onDone() {
+    this.dispatchEvent(
+      new CustomEvent("changeItem", {
+        bubbles: true,
+        composed: true,
+        detail: { itemId: this.todoItem.id },
+      })
+    );
+  }
+
   static get template() {
-    return html`<li>[[todoItem.item]]</li>
-      <button on-click="onRemove">x</button>`;
+    return html`
+      <li>
+        <input checked="[[todoItem.done]]" type="checkbox" on-click="onDone" />
+        [[todoItem.item]]
+        <button on-click="onRemove">x</button>
+      </li>
+    `;
   }
 }
 
